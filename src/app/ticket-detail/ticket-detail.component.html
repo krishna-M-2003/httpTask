@@ -1,0 +1,180 @@
+<div class="container c1 py-4">
+    <h1>ticket-detail</h1>
+</div>
+
+<div class="container c2 my-4">
+    <div class="card border-secondary topCard mb-3" style="max-width: 13rem;">
+        <div class="card-body">
+            <div class="card-idLeft">Enquiry Id : {{filterData?.EnquiryId}}</div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-outline-secondary" (click)="goToListPage()">- back -</button>
+</div>
+
+<div class=" container detial-page my-4">
+    <div class="row">
+        <div class="col">
+            <div class="card border-secondary mb-3" style="max-width: 33rem;">
+                <div class="card-body bodyColorInfo">
+                    <h5 class="card-title">Customer details</h5>
+                    <hr>
+                    <div class="card-text">
+                    <div class="row">
+                        <label class="col"> Customer Name : </label>
+                        <div class="col">{{filterData.CustomerName}}</div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col"> Contact No : </label>
+                        <div class="col">{{filterData.ContactNo}}</div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col"> Email : </label>
+                        <div class="col">{{filterData.Email}}</div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col"> Enquiery Date : </label>
+                        <div class="col">{{filterData.EnquieryDate}}</div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col"> Ticket Assign Group Name : </label>
+                        <div class="col">{{filterData.TicketAssignGroupName}}</div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col"> Description : </label>
+                        <div class="col">{{filterData.Description}}</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-secondary mb-3" style="max-width: 33rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Status</h5>
+                    <hr>
+                    <div class="card-text">
+                        <div class="row">
+                            <label class="col"> Status Name : </label>
+                            <div class="col">{{filterData.StatusName}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Status Name Ar : </label>
+                            <div class="col">{{filterData.StatusNameAr}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Status Name Ar : </label>
+                            <div class="col">{{filterData.StatusNameAr}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Subject : </label>
+                            <div class="col">{{filterData.Subject}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Assigned To : </label>
+                            <div class="col">{{filterData.AssignedTo}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Priority Name Ar : </label>
+                            <div class="col">{{filterData.PriorityNameAr}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card border-secondary mb-3" style="max-width: 33rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Group & Tickets details</h5>
+                    <hr>
+                    <div class="card-text">
+                        <div class="row">
+                            <label class="col"> Group Name : </label>
+                            <div class="col">{{filterData.GroupName}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Group NameAr : </label>
+                            <div class="col">{{filterData.GroupNameAr}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Sub Group Name : </label>
+                            <div class="col">{{filterData.SubGroupName}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Sub Group NameAr : </label>
+                            <div class="col">{{filterData.SubGroupNameAr}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Ticket Type Name : </label>
+                            <div class="col">{{filterData.TicketTypeName}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Ticket Type NameAr : </label>
+                            <div class="col">{{filterData.TicketTypeNameAr}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-secondary mb-3" style="max-width: 33rem;">
+                <div class="card-body bodyColorInfo">
+                    <h5 class="card-title">Contract Number & tickets</h5>
+                    <hr>
+                    <div class="card-text">
+                        <div class="row">
+                            <label class="col"> Ticket Assign Group NameAr : </label>
+                            <div class="col">{{filterData.TicketAssignGroupNameAr}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Ticket Creater : </label>
+                            <div class="col">{{filterData.TicketCreater}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Contract Number : </label>
+                            <div class="col">{{filterData.ContractNumber}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Ticket Channel Name : </label>
+                            <div class="col">{{filterData.TicketChannelName}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Ticket Type NameAr : </label>
+                            <div class="col">{{filterData.TicketTypeNameAr}}</div>
+                        </div>
+    
+                        <div class="row">
+                            <label class="col"> Ticket AssignGroup Name : </label>
+                            <div class="col">{{filterData.TicketAssignGroupName}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,897 @@
+<div class="container c-1">
+  <h2 class="SnHead py-4">Ticket-List</h2>
+
+  <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="mdo" (click)="openpopUpData()">Create</button>
+
+</div>
+
+<!-- filter pipe search Bar -->
+<div class="d-flex my-3 container">
+  <input class="searchBar search-1" type="text" [(ngModel)]="userFilter.EnquiryId" placeholder="Search by EnquiryId"
+    aria-label="Search">
+  <button class="btn btn-outline-success searchBtn" type="submit"> Search</button>
+</div>
+<!-- filter pipe end -->
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-hover table-Secondary table-striped">
+      <thead>
+        <tr>
+
+          <th scope="col" [class.active]="orderHerder === 'EnquiryId'"> Enquiry Id
+
+                <div class="sort-asc-desc" (click)="sort('EnquiryId')">
+                  <!-- short icon color change by ngClass & css -->
+                  <span [ngClass]="{'sort-highlight': orderHerder === 'EnquiryId' && isDecsOrder}">
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                  </span>
+                  <span  [ngClass]="{'sort-highlight': orderHerder === 'EnquiryId' && !isDecsOrder}"> 
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    </span>
+                    <!-- short icon color change end -->
+                </div>
+
+            <div>
+              <input class="searchBar" type="text" [(ngModel)]="userFilter.EnquiryId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'CustomerId'"> Customer Id
+            <div class="sort-asc-desc" (click)="sort('CustomerId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'CustomerId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'CustomerId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.CustomerId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'CustomerName'"> Customer Name
+            <div class="sort-asc-desc" (click)="sort('CustomerName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'CustomerName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'CustomerName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.CustomerName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'ContactNo'"> Contact No
+            <div class="sort-asc-desc" (click)="sort('ContactNo')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'ContactNo' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'ContactNo' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.ContactNo" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'Email'"> Email
+            <div class="sort-asc-desc" (click)="sort('Email')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'Email' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'Email' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.Email" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+          <th scope="col" [class.active]="orderHerder === 'EnquieryDate'"> Enquiery Date
+            <div class="sort-asc-desc" (click)="sort('EnquieryDate')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'EnquieryDate' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'EnquieryDate' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.EnquieryDate" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'Description'"> Description
+            <div class="sort-asc-desc" (click)="sort('Description')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'Description' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'Description' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class="searchBar" type="text" [(ngModel)]="userFilter.Description" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'StatusId'"> Status Id
+            <div class="sort-asc-desc" (click)="sort('StatusId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'StatusId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'StatusId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.StatusId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'StatusName'"> Status Name
+            <div class="sort-asc-desc" (click)="sort('StatusName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'StatusName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'StatusName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.StatusName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+          <th scope="col" [class.active]="orderHerder === 'StatusNameAr'"> Status NameAr
+            <div class="sort-asc-desc" (click)="sort('StatusNameAr')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'StatusNameAr' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'StatusNameAr' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class="searchBar" type="text" [(ngModel)]="userFilter.StatusNameAr" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+          <th scope="col" [class.active]="orderHerder === 'Subject'"> Subject
+            <div class="sort-asc-desc" (click)="sort('Subject')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'Subject' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'Subject' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.Subject" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'AssignedTo'"> Assigned To
+            <div class="sort-asc-desc" (click)="sort('AssignedTo')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'AssignedTo' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'AssignedTo' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.AssignedTo" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'PriorityId'"> Priority Id
+            <div class="sort-asc-desc" (click)="sort('PriorityId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'PriorityId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'PriorityId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.PriorityId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'PriorityName'"> Priority Name
+            <div class="sort-asc-desc" (click)="sort('PriorityName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'PriorityName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'PriorityName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.PriorityName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'PriorityNameAr'"> Priority NameAr
+            <div class="sort-asc-desc" (click)="sort('PriorityName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'PriorityNameAr' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'PriorityNameAr' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.PriorityNameAr" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'GroupId'"> Group Id
+            <div class="sort-asc-desc" (click)="sort('GroupId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'GroupId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'GroupId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.GroupId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'GroupName'"> Group Name
+            <div class="sort-asc-desc" (click)="sort('GroupName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'GroupName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'GroupName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.GroupName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'GroupNameAr'"> Group NameAr
+            <div class="sort-asc-desc" (click)="sort('GroupNameAr')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'GroupNameAr' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'GroupNameAr' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.GroupNameAr" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'SubGroupId'"> SubGroup Id
+            <div class="sort-asc-desc" (click)="sort('SubGroupId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'SubGroupId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'SubGroupId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.SubGroupId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'SubGroupName'"> SubGroup Name
+            <div class="sort-asc-desc" (click)="sort('SubGroupName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'SubGroupName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'SubGroupName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.SubGroupName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'SubGroupNameAr'"> SubGroup NameAr
+            <div class="sort-asc-desc" (click)="sort('SubGroupNameAr')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'SubGroupNameAr' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'SubGroupNameAr' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.SubGroupNameAr" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketTypeId'"> TicketType Id
+            <div class="sort-asc-desc" (click)="sort('TicketTypeId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketTypeId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketTypeId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketTypeId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketTypeName'"> TicketType Name
+            <div class="sort-asc-desc" (click)="sort('TicketTypeName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketTypeName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketTypeName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketTypeName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketTypeNameAr'">TicketType NameAr
+            <div class="sort-asc-desc" (click)="sort('TicketTypeNameAr')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketTypeNameAr' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketTypeNameAr' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketTypeNameAr" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketAssignGroupId'"> Ticket Assign Group Id
+            <div class="sort-asc-desc" (click)="sort('TicketAssignGroupId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketAssignGroupId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketAssignGroupId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketAssignGroupId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketAssignGroupName'"> TicketAssign GroupName
+            <div class="sort-asc-desc" (click)="sort('TicketAssignGroupName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketAssignGroupName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketAssignGroupName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketAssignGroupName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketAssignGroupNameAr'"> TicketAssign GroupNameAr
+            <div class="sort-asc-desc" (click)="sort('TicketAssignGroupNameAr')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketAssignGroupNameAr' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketAssignGroupNameAr' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketAssignGroupNameAr"
+                placeholder="Search" aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketCreater'"> Ticket Creater
+            <div class="sort-asc-desc" (click)="sort('TicketCreater')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketCreater' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketCreater' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketCreater" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'ContractNumber'"> Contract Number
+            <div class="sort-asc-desc" (click)="sort('ContractNumber')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'ContractNumber' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'ContractNumber' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.ContractNumber" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'LabourNumber'"> Labour Number
+            <div class="sort-asc-desc" (click)="sort('LabourNumber')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'LabourNumber' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'LabourNumber' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.LabourNumber" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'LabourName'"> Labour Name
+            <div class="sort-asc-desc" (click)="sort('LabourName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'LabourName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'LabourName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.LabourName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketChannelId'"> TicketChannel Id
+            <div class="sort-asc-desc" (click)="sort('TicketChannelId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketChannelId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketChannelId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketChannelId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketChannelName'"> TicketChannel Name
+            <div class="sort-asc-desc" (click)="sort('TicketChannelName')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketChannelName' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketChannelName' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketChannelName" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'TicketChannelNameAr'"> TicketChannel NameAr
+            <div class="sort-asc-desc" (click)="sort('TicketChannelNameAr')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'TicketChannelNameAr' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'TicketChannelNameAr' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.TicketChannelNameAr" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'IsClosed'"> Is Closed
+            <div class="sort-asc-desc" (click)="sort('IsClosed')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'IsClosed' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'IsClosed' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.IsClosed" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'EnqFiles'"> Enq Files
+            <div class="sort-asc-desc" (click)="sort('EnqFiles')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'EnqFiles' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'EnqFiles' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.EnqFiles" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'PriorityOrder'"> Priority Order
+            <div class="sort-asc-desc" (click)="sort('PriorityOrder')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'PriorityOrder' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'PriorityOrder' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.PriorityOrder" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'ModifiedDatetime'"> Modified Datetime
+            <div class="sort-asc-desc" (click)="sort('ModifiedDatetime')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'ModifiedDatetime' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'ModifiedDatetime' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.ModifiedDatetime" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'RecVersion'"> Rec Version
+            <div class="sort-asc-desc" (click)="sort('RecVersion')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'RecVersion' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'RecVersion' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.RecVersion" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'CreatedBy'"> Created By
+            <div class="sort-asc-desc" (click)="sort('CreatedBy')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'CreatedBy' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'CreatedBy' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.CreatedBy" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'ModifyBy'"> Modify By
+            <div class="sort-asc-desc" (click)="sort('ModifyBy')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'ModifyBy' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'ModifyBy' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.ModifyBy" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'CreatedDatetime'"> Created Datetime
+            <div class="sort-asc-desc" (click)="sort('CreatedDatetime')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'CreatedDatetime' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'CreatedDatetime' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.CreatedDatetime" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'Accuracy'"> Accuracy
+            <div class="sort-asc-desc" (click)="sort('Accuracy')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'CreatedDatetime' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'CreatedDatetime' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.Accuracy" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+          <th scope="col" [class.active]="orderHerder === 'RecId'"> Rec Id
+            <div class="sort-asc-desc" (click)="sort('RecId')">
+              <span [ngClass]="{'sort-highlight': orderHerder === 'RecId' && isDecsOrder}">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+              <span  [ngClass]="{'sort-highlight': orderHerder === 'RecId' && !isDecsOrder}"> 
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div>
+              <input class=" searchBar " type="text" [(ngModel)]="userFilter.RecId" placeholder="Search"
+                aria-label="Search">
+            </div>
+          </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let ticket of tickets | filterBy:userFilter | paginate: { itemsPerPage: itemsPerPage, currentPage: p } | orderBy: orderHerder: isDecsOrder">
+          <td><a href="javascript:void(0)" (click)="onSelect(ticket)">{{ticket.EnquiryId}}</a></td>
+          <td>{{ticket.CustomerId}}</td>
+          <td>{{ticket.CustomerName}}</td>
+          <td>{{ticket.ContactNo}}</td>
+          <td>{{ticket.Email}}</td>
+          <td>{{ticket.EnquieryDate}}</td>
+          <td>{{ticket.Description}}</td>
+          <td>{{ticket.StatusId}}</td>
+          <td>{{ticket.StatusName}}</td>
+          <td>{{ticket.StatusNameAr}}</td>
+          <td>{{ticket.Subject}}</td>
+          <td>{{ticket.AssignedTo}}</td>
+          <td>{{ticket.PriorityId}}</td>
+          <td>{{ticket.PriorityName}}</td>
+          <td>{{ticket.PriorityNameAr}}</td>
+          <td>{{ticket.GroupId}}</td>
+          <td>{{ticket.GroupName}}</td>
+          <td>{{ticket.GroupNameAr}}</td>
+          <td>{{ticket.SubGroupId}}</td>
+          <td>{{ticket.SubGroupName}}</td>
+          <td>{{ticket.SubGroupNameAr}}</td>
+          <td>{{ticket.TicketTypeId}}</td>
+          <td>{{ticket.TicketTypeName}}</td>
+          <td>{{ticket.TicketTypeNameAr}}</td>
+          <td>{{ticket.TicketAssignGroupId}}</td>
+          <td>{{ticket.TicketAssignGroupName}}</td>
+          <td>{{ticket.TicketAssignGroupNameAr}}</td>
+          <td>{{ticket.TicketCreater}}</td>
+          <td>{{ticket.ContractNumber}}</td>
+          <td>{{ticket.LabourNumber}}</td>
+          <td>{{ticket.LabourName}}</td>
+          <td>{{ticket.TicketChannelId}}</td>
+          <td>{{ticket.TicketChannelName}}</td>
+          <td>{{ticket.TicketChannelNameAr}}</td>
+          <td>{{ticket.IsClosed}}</td>
+          <td>{{ticket.EnqFiles}}</td>
+          <td>{{ticket.PriorityOrder}}</td>
+          <td>{{ticket.ModifiedDatetime}}</td>
+          <td>{{ticket.RecVersion}}</td>
+          <td>{{ticket.CreatedBy}}</td>
+          <td>{{ticket.ModifyBy}}</td>
+          <td>{{ticket.CreatedDatetime}}</td>
+          <td>{{ticket.Accuracy}}</td>
+          <td>{{ticket.RecId}}</td>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- pagination -->
+
+  <div class="container">
+
+    <div class="pagination mt-8 py-5">
+
+      <div class="Page-Size">
+        <b>Page Size</b>
+        <select class="selecters" [(ngModel)]="itemsPerPage">
+          <option itemsPerPage="true">5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+        </select>
+      </div>
+
+      <div>
+        <b class="page-num">TotalCount: <span class="text-info">{{totalCountList}}</span></b>
+      </div>
+
+      <pagination-controls (pageChange)="p = $event">
+      </pagination-controls>
+
+    </div>
+  </div>
+
+  <!-- pagination end here -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop='static'>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Ticket Create</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="closeX()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="allData">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Customer Type:</label>
+              <input type="text" class="form-control" id="recipient-name" readonly value="Individual"
+                formControlName="CustomerType">
+
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Customer Id:</label>
+              <input type="text" class="form-control" id="recipient-name" readonly value="CIN0000150"
+                formControlName="CustomerId">
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Contract Number:</label>
+              <ng-select
+                [class.invalid]="allData.get('ContractNumber')?.invalid && allData.get('ContractNumber')?.touched"
+                [items]="DDContactNumber" bindLabel="ContractNumber" bindValue="ContractNumber" class=""
+                (change)="ContractNumberChangeEvent($event)" formControlName="ContractNumber"
+                (clear)="closeContactNumber()">
+              </ng-select>
+              <small [class.d-none]="allData.get('ContractNumber')?.valid || allData.get('ContractNumber')?.untouched"
+                class="text-danger">ContractNumber is required !</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Labour Id:</label>
+              <ng-select [class.invalid]="allData.get('LabourId')?.invalid && allData.get('LabourId')?.touched"
+                [items]="DDLabourId" bindLabel="Name" bindValue="EmployeeId" formControlName="LabourId"
+                (open)="openlid()">
+              </ng-select>
+              <small [class.d-none]="allData.get('LabourId')?.valid || allData.get('LabourId')?.untouched"
+                class="text-danger">LabourId is required !</small>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Ticket Type:</label>
+              <ng-select [class.invalid]="allData.get('TicketType')?.invalid && allData.get('TicketType')?.touched"
+                [items]="DDTicketType" bindLabel="Name" bindValue="ID" (change)="TicketTypeIDChangeEvent($event)"
+                formControlName="TicketType" (clear)="clearTicketType()">
+              </ng-select>
+              <small [class.d-none]="allData.get('TicketType')?.valid || allData.get('TicketType')?.untouched"
+                class="text-danger">TicketType is required !</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Department :</label>
+              <ng-select [class.invalid]="allData.get('Department')?.invalid && allData.get('Department')?.touched"
+                [items]="DepartmentDD" bindLabel="Name" bindValue="ID" (change)="DepartmentChangeEvent($event)"
+                formControlName="Department" (open)="openDepartment()" (clear)="clearDepartment()">
+              </ng-select>
+              <small [class.d-none]="allData.get('Department')?.valid || allData.get('Department')?.untouched"
+                class="text-danger">Department is required !</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Assigned To:</label>
+              <ng-select [class.invalid]="allData.get('AssignedTo')?.invalid && allData.get('AssignedTo')?.touched"
+                [items]="DDAssignedTo" bindLabel="Name" bindValue="ID" formControlName="AssignedTo">
+              </ng-select>
+              <small [class.d-none]="allData.get('AssignedTo')?.valid || allData.get('AssignedTo')?.untouched"
+                class="text-danger">AssignedTo is required !</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Priority:</label>
+              <ng-select [class.invalid]="allData.get('Priority')?.invalid && allData.get('Priority')?.touched"
+                [items]="DDPriority" bindLabel="Name" bindValue="ID" formControlName="Priority">
+              </ng-select>
+              <small [class.d-none]="allData.get('Priority')?.valid || allData.get('Priority')?.untouched"
+                class="text-danger">Priority is required !</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Category:</label>
+              <ng-select [class.invalid]="allData.get('Category')?.invalid && allData.get('Category')?.touched"
+                [items]="DDCategory" bindLabel="TicketGroupName" bindValue="TicketGroupID"
+                (change)="CategoryChangeEvent($event)" formControlName="Category" (open)="openCategory()">
+              </ng-select>
+              <small [class.d-none]="allData.get('Category')?.valid || allData.get('Category')?.untouched"
+                class="text-danger">Category is required !</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Sub Category:</label>
+              <ng-select [class.invalid]="allData.get('SubCategory')?.invalid && allData.get('SubCategory')?.touched"
+                [items]="DDSubCategory" bindLabel="Description" bindValue="Id" formControlName="SubCategory"
+                (open)="openSubCategory()">
+              </ng-select>
+              <small [class.d-none]="allData.get('SubCategory')?.valid || allData.get('SubCategory')?.untouched"
+                class="text-danger">SubCategory is required !</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Subject:</label>
+              <input [class.invalid]="allData.get('Subject')?.invalid && allData.get('Subject')?.touched" type="text"
+                class="form-control" id="recipient-name" formControlName="Subject">
+              <small [class.d-none]="allData.get('Subject')?.valid || allData.get('Subject')?.untouched"
+                class="text-danger">Subject is required !</small>
+
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Description:</label>
+              <textarea [class.invalid]="allData.get('Description')?.invalid && allData.get('Description')?.touched"
+                class="form-control" id="message-text" formControlName="Description"></textarea>
+              <small [class.d-none]="allData.get('Description')?.valid || allData.get('Description')?.untouched"
+                class="text-danger">Description is required !</small>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
+
+          <button [disabled]="!allData.valid" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Submit()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

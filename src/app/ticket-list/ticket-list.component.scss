@@ -1,0 +1,72 @@
+.SnHead {
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: lightseagreen;
+}
+
+a:hover {
+    color: rgb(100, 28, 234);
+  }
+
+  .c-1{
+    text-align: end;
+  }
+
+  input[readonly] {
+    background-color: lightgray;
+}
+
+.search-1{
+  width: 91%;
+  border-radius: 11px;
+}
+
+.searchBtn{
+  margin-left: 30px;
+  border-radius: 15px;
+}
+
+.searchBar{
+  margin: 4px 0px 4px 0px;
+}
+
+.pagination{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selecters{
+  height: 30px;
+  background-color: aliceblue;
+  border-radius: 6px;
+  margin-right: 20px;
+  margin-left: 15px;
+}
+
+.page-num{
+  margin-top: 5px;
+}
+
+.sort-asc-desc{
+  display: inline-block;
+}
+
+.sort-asc-desc:hover{
+  color: rgb(22, 78, 59);
+}
+
+ng-select.invalid {
+  border: 1px solid red;
+  border-radius: 5px;
+}
+
+// short icon color change
+
+.sort-highlight {
+  color: rgb(142, 209, 18);
+}
+
+// short icon color change end

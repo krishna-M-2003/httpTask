@@ -1,0 +1,47 @@
+.c1{
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 15px;
+}
+
+.detial-page{
+    text-align: center;
+}
+
+.c2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.topCard{
+    width: 22%;
+}
+
+.btn-outline-secondary{
+    margin-right: 20px;
+    height: 43px;
+    margin-top: 14px;
+}
+
+a {
+    color: rgb(10, 9, 10);
+  }
+
+  a:link {
+    text-decoration: none;
+  }  
+
+  .card-idLeft{
+    text-align: center;
+  }
+
+  .card-body:hover {
+    background-color: #e9ecef;;
+      color: black;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 8px;
+  }
+
+  .card-text{
+    text-align: start;
+  }
